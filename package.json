@@ -2,6 +2,7 @@
   "name": "react_password",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://bayyavaishnavi.github.io/password-checker",
   "type": "module",
   "scripts": {
     "dev": "vite",
