@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import "./LoginPage.css";
 
+const GMAIL_PATTERN = /^[A-Za-z0-9._%+-]+@gmail\.com$/i;
+
 const LoginPage = ({ onLoginAttempt, onGoToRegister, loginNotice }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -19,12 +21,12 @@ const LoginPage = ({ onLoginAttempt, onGoToRegister, loginNotice }) => {
 
   const validateForm = () => {
     const nextErrors = {};
-    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    const isEmailValid = GMAIL_PATTERN.test(email.trim());
 
     if (!email.trim()) {
       nextErrors.email = "Email is required.";
     } else if (!isEmailValid) {
-      nextErrors.email = "Enter a valid email address.";
+      nextErrors.email = "Enter a valid Gmail address ending with @gmail.com.";
     }
 
     if (!password) {
@@ -78,7 +80,7 @@ const LoginPage = ({ onLoginAttempt, onGoToRegister, loginNotice }) => {
             id="email"
             name="email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="you@gmail.com"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
